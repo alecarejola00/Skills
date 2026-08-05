@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Procurement Report</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --ink: #1f2933;
+      --muted: #5b6773;
+      --line: #e2d9cc;
+      --accent: #0f766e;
+      --accent-soft: #dff5f2;
+      --warn: #b45309;
+      --danger: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #faf7f1 0%, #f3ede2 100%);
+      color: var(--ink);
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(31, 41, 51, 0.05);
+    }
+
+    .hero {
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { margin: 0 0 10px; }
+    p { margin: 0 0 10px; color: var(--muted); line-height: 1.5; }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin: 20px 0;
+    }
+
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .layout {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1.4fr 1fr;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .chart-box {
+      min-height: 260px;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink);
+    }
+
+    li { margin-bottom: 10px; }
+
+    .confidence {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .confidence.high { background: #dcfce7; color: #166534; }
+    .confidence.mixed { background: #fef3c7; color: var(--warn); }
+    .confidence.low { background: #fee2e2; color: var(--danger); }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Procurement Report</span>
+      <h1>Weekly Quote Performance</h1>
+      <p>Replace this shell with live Procurement MCP findings, insights, and charts.</p>
+      <p><strong>Window:</strong> [reporting window]</p>
+      <p><strong>Confidence:</strong> <span class="confidence mixed">Mixed</span></p>
+    </section>
+
+    <section class="grid">
+      <div class="card"><div class="label">Total Quotes</div><div class="value">0</div></div>
+      <div class="card"><div class="label">Quoted</div><div class="value">0</div></div>
+      <div class="card"><div class="label">Won</div><div class="value">0</div></div>
+      <div class="card"><div class="label">On Going / Unknown</div><div class="value">0</div></div>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <h2>Charts</h2>
+        <div class="chart-box">Insert status, trend, assignee, or aging chart here.</div>
+      </div>
+
+      <div class="panel">
+        <h2>Insights</h2>
+        <ul>
+          <li>Lead with the most decision-relevant finding.</li>
+          <li>Separate facts from interpretation.</li>
+          <li>End with recommended next actions.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

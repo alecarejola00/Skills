@@ -1,0 +1,4 @@
+interface:
+  display_name: "Procurement Insight Report"
+  short_description: "Procurement insights and visual reports"
+  default_prompt: "Use $procurement-insight-report to analyze Procurement MCP data and create a visual report."
