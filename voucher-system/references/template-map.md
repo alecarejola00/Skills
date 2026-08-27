@@ -4,57 +4,58 @@ This map is based on the user's current voucher workbook review.
 
 ## Canonical workbook notes
 
-- The workbook contains historical filled examples plus lookup sheets.
-- The cleanest reusable block today is on sheet `FIXED VOUCHERS`.
-- The bottom voucher block is the best current candidate for automation because its editable cells are largely blank while the formulas and labels remain in place.
-- The historical template pattern also uses two voucher copies side by side on a single sheet. Preserve that side-by-side layout when generating the final output workbook, while still reducing the final workbook to one sheet tab unless the user asks otherwise.
+- `GENERAL VOUCHER.xlsx` is the master template when supplied by the user.
+- Voucher sheets are `Journal Voucher Template`, `Payment Voucher Template`, and `Check Voucher Template`.
+- Each voucher sheet has two copies side by side: left block `A:K`, right block `M:W`.
+- The Check Voucher sheet currently labels the left block `CHECK VOUCHER` and the right block `JOURNAL VOUCHER`. This is intentional for the PDC/check package and must not be renamed by the Skill.
 
 ## Supporting lookup sheets
 
 - `Suppliers List`: payee dropdown source
 - `COC`: chart of accounts and account-title dropdown source
 
-## Canonical blank target block
+## Canonical target blocks
 
-Sheet: `FIXED VOUCHERS`
+For all three voucher sheets, the common header fields are:
 
 Header and identity fields:
 
-- voucher type: `A116:K116` and `M116:W116`
-- company/TIN/address header: rows `117:118`
-- payment-reference label/value area: `I119:K119` and `U119:W119`
-- payee: `C120:G120` and `O120:S120`
-- date: `J120:K120` and `V120:W120`
+- left payee/bill-to: `C6:G6` (write to the merged anchor `C6`)
+- right payee/bill-to: `O6:S6` (write to `O6`)
+- left date: `J6:K6` (write to `J6`)
+- right date: `V6:W6` (write to `V6`)
+- left reference value: `J5:K5` (write to `J5`)
+- right reference value: `V5:W5` (write to `V5`)
 
 Accounting area:
 
-- account-title rows, left voucher: `C123:E128`
-- debit rows, left voucher: `I123:I128`
-- credit rows, left voucher: `K123:K128`
-- account-title rows, right voucher: `O123:Q128`
-- debit rows, right voucher: `U123:U128`
-- credit rows, right voucher: `W123:W128`
-- totals: row `129`
+- left account-title rows: `C10:G14`
+- left debit rows: `I10:I14`
+- left credit rows: `K10:K14`
+- right account-title rows: `O10:S14`
+- right debit rows: `U10:U14`
+- right credit rows: `W10:W14`
+- totals: use the existing formula cells on each sheet; never replace them with hardcoded totals
 
 Particulars and signatures:
 
-- particulars label: `A130` and `M130`
-- particulars content: `A131:K134` and `M131:W134`
-- signature section starts at row `138`
+- Journal explanation: left `A19:K21`, right `M19:W21`
+- Payment particulars: left `A18:K21`, right `M18:W21`
+- Check particulars: left `A17:K21`, right `M17:W21`
+- prepared-by and fixed signatory areas remain in the template's existing rows
 
 ## Final output workbook rule
 
-- Keep the voucher content on a single output sheet tab by default.
-- If the template contains two side-by-side voucher copies on that sheet, populate both copies.
-- For one input source, both copies should represent the same supplier or company unless the user explicitly requests a different arrangement.
+- Bank transfer: copy the Journal and Payment template sheets into an output workbook, rename them `Journal Voucher` and `Payment Voucher`, and remove lookup sheets.
+- PDC/check: copy the Journal and Check template sheets, rename them `Journal Voucher` and `Check Voucher`, and remove lookup sheets.
+- Populate both copies on every included sheet with the same source company/payee.
 
 ## Current dropdown behavior
 
-On `FIXED VOUCHERS`, the workbook already includes:
+On the voucher template sheets, the workbook may include:
 
 - payee list validation from `Suppliers List`
 - payment-reference type validation with `BN No.`, `PN No.`, `Check No.`, and `Reference`
-- voucher type validation with `PAYMENT VOUCHER` and `CHECK VOUCHER`
 - account-title validation from `COC`
 
 ## Known sample mapping from the reviewed PO
