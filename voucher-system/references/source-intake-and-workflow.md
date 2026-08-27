@@ -11,6 +11,8 @@ Start every run by confirming the source type:
 
 For cloud sources, require the exact link from the user. Do not browse folders or guess which file the user means.
 
+Also require the output template file for the run. Treat that template as the main working workbook.
+
 ## Supported source types
 
 - purchase order PDFs
@@ -24,14 +26,16 @@ For cloud sources, require the exact link from the user. Do not browse folders o
 ## Standard run flow
 
 1. Identify the source location and document type.
-2. Read the source and extract structured fields.
-3. Compare the extracted fields with the voucher template requirements.
-4. Fill whatever is confidently supported by the source.
-5. Ask for missing or ambiguous values.
-6. Confirm the desired output format.
-7. Generate one `.xlsx` or `.pdf` per source.
-8. Present a short audit summary of:
+2. Confirm the output template file that should receive the voucher data.
+3. Read the source and extract structured fields.
+4. Compare the extracted fields with the voucher template requirements.
+5. Fill whatever is confidently supported by the source.
+6. Ask for missing or ambiguous values.
+7. Confirm the desired output format.
+8. Generate one `.xlsx` or `.pdf` per source.
+9. Present a short audit summary of:
    - source file or link
+   - output template file used
    - extracted fields
    - user-supplied fields
    - accounting rules used
@@ -62,11 +66,19 @@ Allow `.pdf` when:
 - the user has supplied all missing fields
 - the user wants a fixed, shareable copy
 
+## Workbook structure rule
+
+- The output workbook should normally contain only one sheet tab.
+- Preserve the template's layout inside that one sheet when possible.
+- If the template shows two voucher copies side by side on one sheet, keep that layout in the final output.
+- For a single-source run, both side-by-side copies should correspond to the same source company or payee unless the user says otherwise.
+- If the chosen template requires multiple sheets for a legitimate process reason, ask before keeping them.
+
 ## Batch rule
 
 For multiple inputs:
 
 - keep one extraction record per source
-- keep one output per source
+- keep one output workbook per source
 - preserve the input-to-output pairing
 - report failures separately so successful outputs can still be delivered
