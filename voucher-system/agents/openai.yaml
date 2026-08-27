@@ -1,0 +1,4 @@
+interface:
+  display_name: "Voucher System"
+  short_description: "Create voucher outputs from source files"
+  default_prompt: "Use $voucher-system to turn my source file or exact cloud link into a voucher output and ask only for the missing fields."
